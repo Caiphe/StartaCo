@@ -1,0 +1,73 @@
+- Financial Year end
+- One line to be added in for physical Address & 
+(Have a check box In case the postal and physical address is the same)
+- Set of Blocks for Postal Address to be added
+
+DIRECTOR'S SECTION
+~~~~~~~~~~~~~~~~~~
+An option to be choosen for the number of the directors
+If more than 3 directors download the form
+
+A set of blocks for director's postal Address
+
+On the Company Information 4 textboxes options of Company name;
+
+ if(brandName && brandStatus){
+         	var form = $(this);
+
+         	//Button loading 
+         	$("#createBrandBtn").button('loading');
+
+         	$.ajax({
+         		url: form.attr('action'),
+         		type: form.attr('method'),
+         		data: form.serialize(),
+         		dataType: 'json',
+                success:function(response){
+                	// button loading
+             $("#createBrandBtn").button('reset');
+            if(response.success == true){
+                // Reload The manage Member 
+            manageBrandTable.ajax.reload(null, false);
+
+             // Reset form text
+              $("#submitBrandForm")[0].reset();
+             //Remove the error text
+             $(".text-danger").remove();
+               // Remove the form Error
+            $(".form-group").removeClass('has-error').removeClass('has-success');
+         $("#add-brand-messages").html('<div class="alert alert-success >' +
+      '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+      '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
+     '</div>');
+       $(".alert-success").delay(500).show(10, function(){
+         $(this).delay(3000).hide(10, function(){
+            $(this).remove();
+         });
+       }); //         		
+      }
+    }
+  });
+}
+require_once'core.php';
+$valid['success'] = array('success' => false, 'messages' => array());
+
+if($_POST)
+{
+	$brandName = $_POST['brandName'];
+	$brandStatus = $_POST['brandStatus'];
+
+	$sql = "INSERT INTO brands (brand_name, brand_active, brand_status ) VALUES('$brandName', '$brandStatus', 1)";
+
+	if($connect->query($sql) === TRUE){
+		$valid['success'] = true;
+		$valid['messages'] = 'Successfully Added';
+	}else
+	{
+		$valid['success'] = false;
+		$valid['messages'] = 'Error while adding the brands';
+	}
+
+	$connect->close();
+	echo json_encode($valid);
+

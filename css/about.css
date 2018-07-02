@@ -1,0 +1,75 @@
+@keyframes slidy {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+}
+
+body { margin: 0; } 
+div#slider { overflow: hidden; }
+div#slider figure img { width: 20%; float: center; }
+div#slider figure { 
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  animation: 20s slidy infinite; 
+}
+#team
+{
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border-radius:10px;
+}
+#team:hover{
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+#hea
+{
+	font-weight:bold;
+	font-size:40px;
+	text-align:center;
+	color:red;
+}
+#icon1
+{
+	-webkit-transformation:-webkit-transform 0.3s ease-out;
+	-mos-transition:-moz-transform 0.3s ease-out;
+	-transition:-transform 0.3s ease-out;
+}
+#ico:hover
+{
+	-webkit-transform:rotate(360deg);
+	-moz-transform:rotate(360deg);
+	-transform:rotate(360deg);
+}
+#about
+{
+	text-align:center;
+	font-size:40px;
+	color:#050f5d;
+	font-weight:bold;
+	-webkit-animation-duration:3s;
+	-webkit-animation-iteration-count:infinite;
+}
+#get
+{
+	font-weight:bold;
+	font-size:35px;
+	
+}
